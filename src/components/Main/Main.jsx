@@ -96,7 +96,7 @@ const Main = ({
                         onKeyPress={handleKeyPress}
                         className=" relative w-full bg-gray-100 outline-none "
                     /></div>
-                    <div className="flex items-center gap-3 text-2xl p-4">
+                    <div className="flex items-center gap-3 text-2xl p-4 text-gray-800">
                     <LuImagePlus />
                     <IoMicOutline />
 
