@@ -11,7 +11,7 @@ import { MdOutlineSettings } from "react-icons/md";
 import { GoDotFill } from "react-icons/go";
 const Sidebar = () => {
     return (
-        <div className="px-4 py-3 bg-gray-100 w-80 h-screen">
+        <div className="px-4 py-3 bg-gray-100 w-[402px] h-screen">
             <div className="flex flex-col justify-between h-full gap-8 ">
                 <div className="rounded-full hover:bg-gray-200 p-3 w-12 -ml-2 ">
                     <IoMdMenu className="text-2xl ml-1 " />
