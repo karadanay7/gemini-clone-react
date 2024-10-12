@@ -16,7 +16,7 @@ const Header = () => {
                 <TbGridDots className="text-gray-800 text-[20px]" />
                 </div>
                 <div className=" h-10 w-10 border-opacity-0 border-4 border-gray-200 rounded-full hover:border-opacity-100">
-                    <img src="https://lh3.googleusercontent.com/a/ACg8ocKJPNw4A-wgZXA1FNz8rtn5qywmCpobsROsSDZKPhw223Zlt24=s576-c-no" alt=""  className="rounded-full"/>
+                    <img src="/user.jpg" alt=""  className="rounded-full"/>
                 </div>
             </div>
 
