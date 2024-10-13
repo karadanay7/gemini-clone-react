@@ -1,20 +1,21 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
-  theme: {
-    extend: {
-      animation: {
-        pulse: 'pulse 1.5s ease-in-out infinite',
-      },
-      keyframes: {
-        pulse: {
-          '0%, 100%': { transform: 'scaleX(1)' },
-          '50%': { transform: 'scaleX(1.1)' },
-        },
+
+export const content = [
+  "./src/**/*.{js,jsx,ts,tsx}",
+];
+export const theme = {
+  extend: {
+    keyframes: {
+      gradientMove: {
+        '0%': { 'background-position': '0% 50%' },
+        '100%': { 'background-position': '100% 50%' },
       },
     },
+    animation: {
+      gradientTranslate: 'gradientMove 1.2s linear infinite',
+    },
+    backgroundSize: {
+      '200%': '200% 100%', // Extend the background size to handle the translation smoothly
+    },
   },
-  plugins: [],
 };
+export const plugins = [];
