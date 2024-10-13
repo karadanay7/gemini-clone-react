@@ -14,7 +14,7 @@ export const theme = {
       gradientTranslate: 'gradientMove 1.2s linear infinite',
     },
     backgroundSize: {
-      '200%': '200% 100%', // Extend the background size to handle the translation smoothly
+      '200%': '200% 100%', 
     },
   },
 };
