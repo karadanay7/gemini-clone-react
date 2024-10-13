@@ -13,36 +13,38 @@ import { Context } from "../../context/Context";
 const Sidebar = () => {
     const { onSent, prevPrompts, setRecentPrompt, newChat } = useContext(Context);
     const [isOpen, setIsOpen] = useState(false); // State to manage sidebar visibility
+    const [visibleCount, setVisibleCount] = useState(5); // State to manage visible prompts count
 
     const loadPrompt = async (prompt) => {
         setRecentPrompt(prompt);
         onSent(prompt);
     };
 
+    const handleShowMore = () => {
+        setVisibleCount((prevCount) => prevCount + 5); // Increase the count by 5 when "Show more" is clicked
+    };
+
     return (
         <div className={`bg-gray-100 h-screen transition-all duration-300 ${isOpen ? "w-80" : "w-20"}`}>
             <div className="flex flex-col h-full">
-                {/* Toggle Menu Button */}
                 <div className="flex items-center justify-between p-3">
                     <div className="rounded-full hover:bg-gray-200 p-3" onClick={() => setIsOpen(!isOpen)}>
                         <IoMdMenu className="text-2xl" />
                     </div>
                 </div>
 
-                {/* New Chat Button */}
                 <div
-                    className={`ml-4 flex mt-12 items-center justify-center p-2 bg-gray-200 h-10 rounded-full text-gray-400 mb-4 cursor-pointer transition-all duration-300 ease-in-out  ${isOpen ? "w-32" : "w-10"}`}
+                    className={`ml-4 flex mt-12 items-center justify-center p-2 bg-gray-200 h-10 rounded-full text-gray-400 mb-4 cursor-pointer transition-all duration-300 ease-in-out ${isOpen ? "w-32" : "w-10"}`}
                     onClick={newChat}
                 >
                     <FaPlus className="text-lg" />
                     <span className={`ml-2 transition-opacity duration-300 ${isOpen ? "block" : "hidden"}`}>New chat</span>
                 </div>
 
-                {/* Recent Prompts Section */}
                 <div className={`flex-grow p-2 transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0"}`}>
                     <p className="p-2 font-medium">Recent</p>
                     <div className="grid text-gray-900">
-                        {prevPrompts.map((item, index) => (
+                        {prevPrompts.slice(0, visibleCount).map((item, index) => ( // Show prompts based on visibleCount
                             <div onClick={() => loadPrompt(item)} key={index} className="flex items-center justify-between rounded-full hover:bg-gray-200 p-2 group truncate cursor-pointer">
                                 <div className="flex items-center justify-center gap-4">
                                     <FiMessageSquare className="text-[15px]" />
@@ -53,27 +55,27 @@ const Sidebar = () => {
                                 </div>
                             </div>
                         ))}
-                        <div className="flex items-center justify-between rounded-full hover:bg-gray-200 p-2 group cursor-pointer">
-                            <div className="flex items-center justify-center gap-4">
-                                <IoIosArrowDown />
-                                <span className="text-xs leading-5">Show more</span>
+                        {prevPrompts.length > visibleCount && ( // Check if there are more prompts to show
+                            <div className="flex items-center justify-between rounded-full hover:bg-gray-200 p-2 group cursor-pointer" onClick={handleShowMore}>
+                                <div className="flex items-center justify-center gap-4">
+                                    <IoIosArrowDown />
+                                    <span className="text-xs leading-5">Show more</span>
+                                </div>
                             </div>
-                        </div>
+                        )}
                     </div>
                 </div>
 
-                {/* Additional Options Section */}
                 {isOpen && (
                     <div className="flex flex-col justify-end p-2">
                         <div className="grid text-black font-medium">
-                            {/* Gem Manager Option */}
                             <div className="flex items-center justify-between rounded-full hover:bg-gray-200 p-2 cursor-pointer">
                                 <div className="flex items-center justify-center gap-3">
                                     <BsGem className="text-[18px]" />
                                     <span>Gem Manager</span>
                                 </div>
                             </div>
-                            {/* Help Option */}
+
                             <div className="flex items-center justify-between rounded-full hover:bg-gray-200 p-2 cursor-pointer">
                                 <div className="flex items-center justify-center gap-3">
                                     <BiHelpCircle className="text-[18px]" />
